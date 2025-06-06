@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link"; // Import Link
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 
@@ -27,7 +28,33 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        {children}
+        <nav style={{
+          padding: '1rem',
+          backgroundColor: 'rgba(0, 0, 0, 0.5)', // Semi-transparent black
+          backdropFilter: 'blur(5px)', // Frosted glass effect
+          borderBottom: '1px solid rgba(255, 255, 255, 0.1)',
+          position: 'fixed', // Make it sticky at the top
+          width: '100%',
+          top: 0,
+          zIndex: 1000, // Ensure it's above other content
+        }}>
+          <ul style={{
+            listStyle: 'none',
+            padding: 0,
+            margin: 0,
+            display: 'flex',
+            gap: '1rem',
+            justifyContent: 'center', // Center links
+          }}>
+            <li><Link href="/" style={{ color: '#00e0e0', textDecoration: 'none' }}>Home</Link></li>
+            <li><Link href="/backgrounds/matrix" style={{ color: '#00e0e0', textDecoration: 'none' }}>Matrix</Link></li>
+            <li><Link href="/backgrounds/neon-grid" style={{ color: '#00e0e0', textDecoration: 'none' }}>Neon Grid</Link></li>
+            <li><Link href="/backgrounds/cyberpunk-city" style={{ color: '#00e0e0', textDecoration: 'none' }}>Cyberpunk City</Link></li>
+          </ul>
+        </nav>
+        <main style={{ paddingTop: '60px' }}> {/* Add padding to main content to offset fixed nav */}
+          {children}
+        </main>
       </body>
     </html>
   );
